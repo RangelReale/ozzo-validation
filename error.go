@@ -6,6 +6,7 @@ package validation
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"sort"
 )
@@ -23,6 +24,12 @@ type (
 	internalError struct {
 		error
 	}
+)
+
+var (
+	SkipValidation = errors.New("skip validation")
+
+	DoneValidation = errors.New("done validation")
 )
 
 // NewInternalError wraps a given error into an InternalError.

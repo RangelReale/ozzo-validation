@@ -51,6 +51,11 @@ func Validate(value interface{}, rules ...Rule) error {
 			return nil
 		}
 		if err := rule.Validate(value); err != nil {
+			if err == SkipValidation {
+				return nil
+			} else if err == DoneValidation {
+				break
+			}
 			return err
 		}
 	}
